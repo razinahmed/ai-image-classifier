@@ -15,6 +15,14 @@
 
 ---
 
+## 📸 Preview
+
+<div align="center">
+<img src="screenshots/classifier-ui.svg" alt="AI Image Classifier Preview" width="100%">
+</div>
+
+---
+
 ## 📸 How It Works
 
 1. **📤 Upload Image** - Choose any image from your device (JPEG, PNG, or WebP)
