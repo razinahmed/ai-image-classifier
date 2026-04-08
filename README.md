@@ -18,7 +18,7 @@
 ## 📸 Preview
 
 <div align="center">
-<img src="screenshots/classifier-ui.svg" alt="AI Image Classifier Preview" width="100%">
+<img src="screenshots/classifier-ui.png" alt="AI Image Classifier Preview" width="100%">
 </div>
 
 ---
