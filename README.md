@@ -15,28 +15,50 @@
 
 ---
 
-## 📸 Visual Overview
-
-<div align="center">
-
-| Upload Interface | Classification Results |
-|---|---|
-| ![Upload](https://via.placeholder.com/800x450/0d1117/00d4aa?text=AI+Image+Classifier+Upload) | ![Results](https://via.placeholder.com/800x450/0d1117/ff6b6b?text=Classification+Results) |
-
-| MobileNetV2 Model | Top-5 Predictions |
-|---|---|
-| ![Model](https://via.placeholder.com/400x250/0d1117/7c3aed?text=MobileNetV2+Model) | ![Predictions](https://via.placeholder.com/400x250/0d1117/f59e0b?text=Top-5+Predictions) |
-
-</div>
-
----
-
-## ⚡ How It Works
+## 📸 How It Works
 
 1. **📤 Upload Image** - Choose any image from your device (JPEG, PNG, or WebP)
 2. **🧠 AI Processing** - The MobileNetV2 model analyzes the image in real-time
 3. **📊 Get Results** - Receive top-5 predictions with confidence percentages
 4. **✨ Instant Display** - View beautiful, formatted results in your browser
+
+---
+
+## ⚡ Application Flow
+
+```
+┌────────────────────────────────────────────────────────────┐
+│         AI IMAGE CLASSIFIER - APPLICATION FLOW             │
+├────────────────────────────────────────────────────────────┤
+│                                                             │
+│  STEP 1: UPLOAD INTERFACE                                  │
+│  ┌──────────────────────────────────────────────────────┐  │
+│  │ 📁 Drop image here or click to browse                │  │
+│  │ Accepts: JPEG, PNG, WebP (max 25MB)                 │  │
+│  └──────────────────────────────────────────────────────┘  │
+│                            ↓                                │
+│  STEP 2: AI PROCESSING                                     │
+│  ┌──────────────────────────────────────────────────────┐  │
+│  │ 🧠 TensorFlow + MobileNetV2 Model                    │  │
+│  │ • Pre-trained on ImageNet (1,000 classes)           │  │
+│  │ • Lightweight & Fast (25ms inference)               │  │
+│  │ • Accurate predictions with confidence scores        │  │
+│  └──────────────────────────────────────────────────────┘  │
+│                            ↓                                │
+│  STEP 3: DETAILED RESULTS                                  │
+│  ┌──────────────────────────────────────────────────────┐  │
+│  │ Top-5 Predictions:                                    │  │
+│  │ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │  │
+│  │ 1. Dog              [████████████████] 98.34%        │  │
+│  │ 2. Puppy            [██████] 1.45%                  │  │
+│  │ 3. Animal           [███] 0.15%                     │  │
+│  │ 4. Mammal           [██] 0.04%                      │  │
+│  │ 5. Canine           [█] 0.02%                       │  │
+│  │ Processing time: 0.23 seconds                        │  │
+│  └──────────────────────────────────────────────────────┘  │
+│                                                             │
+└────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -221,17 +243,6 @@ curl -X POST -F "image=@photo.jpg" http://localhost:5000/predict
 ✅ **Accurate** - Solid ImageNet performance  
 ✅ **Portable** - Easy deployment on any platform  
 ✅ **Proven** - Battle-tested across millions of devices  
-
----
-
-## 📸 Screenshots Gallery
-
-| Feature | Preview |
-|---------|---------|
-| **Main Upload Interface** | ![Upload](https://via.placeholder.com/600x400/0d1117/00d4aa?text=Upload+Image) |
-| **Real-time Classification** | ![Classify](https://via.placeholder.com/600x400/0d1117/ff6b6b?text=AI+Processing) |
-| **Detailed Results** | ![Results](https://via.placeholder.com/600x400/0d1117/7c3aed?text=Top-5+Predictions) |
-| **Mobile View** | ![Mobile](https://via.placeholder.com/600x400/0d1117/f59e0b?text=Responsive+Design) |
 
 ---
 
