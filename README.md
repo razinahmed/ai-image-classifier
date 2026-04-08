@@ -321,3 +321,4 @@ MIT License summary:
 [Star on GitHub](https://github.com/razinahmed/ai-image-classifier) • [Report Issue](https://github.com/razinahmed/ai-image-classifier/issues) • [Suggest Feature](https://github.com/razinahmed/ai-image-classifier/issues/new)
 
 </div>
+
