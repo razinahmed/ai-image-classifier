@@ -9,7 +9,7 @@
 [![Flask](https://img.shields.io/badge/Flask-2.x-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![Keras](https://img.shields.io/badge/Keras-API-d00000?style=for-the-badge&logo=keras&logoColor=white)](https://keras.io/)
 [![Docker](https://img.shields.io/badge/Docker-Supported-2496ed?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)](LICENSE)
 
 </div>
 
