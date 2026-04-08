@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Classifier - Intelligent Image Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                    </div>
+                    <h1>AI Image Classifier</h1>
+                </div>
+                <p class="tagline">Powered by MobileNetV2 • Intelligent Image Recognition</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-container">
+                    <div class="upload-zone" id="uploadZone">
+                        <div class="upload-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                        </div>
+                        <h2 class="upload-title">Drop your image here</h2>
+                        <p class="upload-subtitle">or click to browse</p>
+                        <p class="upload-formats">Supported: JPG, PNG, GIF, BMP, WebP (Max 10MB)</p>
+                        <input type="file" id="imageInput" accept="image/*" hidden>
+                    </div>
+
+                    <!-- Image Preview -->
+                    <div class="preview-container" id="previewContainer" style="display: none;">
+                        <div class="preview-image">
+                            <img id="previewImage" src="" alt="Preview">
+                        </div>
+                        <div class="preview-info">
+                            <p class="preview-filename" id="previewFilename"></p>
+                            <button class="btn btn-primary" id="classifyBtn">Classify Image</button>
+                            <button class="btn btn-secondary" id="changeBtn">Choose Another</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+                <div class="loading-content">
+                    <div class="spinner"></div>
+                    <p>Analyzing image...</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-container">
+                    <div class="results-image">
+                        <img id="resultsImage" src="" alt="Classified Image">
+                    </div>
+
+                    <div class="results-content">
+                        <h2>Classification Results</h2>
+
+                        <div class="top-result">
+                            <p class="label">Top Prediction</p>
+                            <h3 id="topPrediction"></h3>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" id="topConfidenceBar"></div>
+                            </div>
+                            <p class="confidence-text" id="topConfidenceText"></p>
+                        </div>
+
+                        <div class="all-predictions">
+                            <p class="label">All Predictions</p>
+                            <div class="predictions-list" id="predictionsList"></div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="tryAgainBtn">Classify Another Image</button>
+                            <button class="btn btn-outline" id="downloadResultsBtn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage" style="display: none;"></div>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <h2>Why Use AI Image Classifier?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
+                            </svg>
+                        </div>
+                        <h3>Fast & Accurate</h3>
+                        <p>Uses MobileNetV2 for quick, accurate classification</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                            </svg>
+                        </div>
+                        <h3>Top-5 Results</h3>
+                        <p>See the top 5 predictions with confidence scores</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path>
+                            </svg>
+                        </div>
+                        <h3>Instant Processing</h3>
+                        <p>Results in seconds with advanced deep learning</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                            </svg>
+                        </div>
+                        <h3>1000+ Classes</h3>
+                        <p>Trained on ImageNet with over 1,000 object classes</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>AI Image Classifier &copy; 2024 • Powered by TensorFlow & Flask</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification Results - AI Image Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                    </div>
+                    <h1>AI Image Classifier</h1>
+                </div>
+                <p class="tagline">Classification Results</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Results Section -->
+            <section class="results-section">
+                <div class="results-container">
+                    <!-- Image Display -->
+                    <div class="results-image">
+                        <div class="image-wrapper">
+                            <img src="{{ url_for('get_image', filename=filename) }}"
+                                 alt="Classified Image"
+                                 class="result-img">
+                        </div>
+                    </div>
+
+                    <!-- Results Content -->
+                    <div class="results-content">
+                        <h2>Classification Results</h2>
+
+                        <!-- Top Prediction -->
+                        <div class="top-result">
+                            <p class="label">Top Prediction</p>
+                            <h3 class="prediction-label">{{ top_prediction }}</h3>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: {{ top_confidence }}%"></div>
+                            </div>
+                            <p class="confidence-text">{{ top_confidence }}% confidence</p>
+                        </div>
+
+                        <!-- All Predictions -->
+                        <div class="all-predictions">
+                            <p class="label">All Predictions (Top 5)</p>
+                            <div class="predictions-list">
+                                {% for pred in predictions %}
+                                <div class="prediction-item">
+                                    <div class="prediction-label-row">
+                                        <span class="pred-name">{{ pred.label }}</span>
+                                        <span class="pred-confidence">{{ "%.1f" | format(pred.percentage) }}%</span>
+                                    </div>
+                                    <div class="prediction-bar">
+                                        <div class="prediction-bar-fill"
+                                             style="width: {{ pred.percentage }}%"
+                                             class="{% if loop.index == 1 %}bar-primary{% elif loop.index == 2 %}bar-secondary{% else %}bar-tertiary{% endif %}">
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Image Details -->
+                        <div class="image-details">
+                            <p class="label">Image Details</p>
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <p class="detail-label">Filename</p>
+                                    <p class="detail-value">{{ filename }}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <p class="detail-label">Model</p>
+                                    <p class="detail-value">MobileNetV2</p>
+                                </div>
+                                <div class="detail-item">
+                                    <p class="detail-label">Classes</p>
+                                    <p class="detail-value">1,000+</p>
+                                </div>
+                                <div class="detail-item">
+                                    <p class="detail-label">Processing Time</p>
+                                    <p class="detail-value">&lt; 1 second</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <a href="{{ url_for('index') }}" class="btn btn-primary">
+                                Classify Another Image
+                            </a>
+                            <button class="btn btn-outline" onclick="window.print()">
+                                Print Results
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Information Cards -->
+            <section class="info-section">
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h3>What is MobileNetV2?</h3>
+                        <p>MobileNetV2 is a lightweight neural network architecture designed for mobile and edge devices. It provides excellent accuracy while maintaining fast inference times, making it ideal for real-world applications.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Confidence Score</h3>
+                        <p>The confidence score indicates how certain the model is about its prediction. Higher values mean the model is more confident. Scores are calculated from the neural network's softmax output.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>ImageNet Database</h3>
+                        <p>This classifier was trained on ImageNet, a large visual database containing millions of labeled images across 1,000+ object categories, enabling broad recognition capabilities.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>AI Image Classifier &copy; 2024 • Powered by TensorFlow & Flask</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  ai-classifier:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-image-classifier
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-here}
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - classifier-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  classifier-network:
+    driver: bridge
